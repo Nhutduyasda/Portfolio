@@ -15,7 +15,7 @@ const INITIAL_LOGS: HistoryItem[] = [
     command: "whoami",
     output: (
       <div className="text-slate-200">
-        <span className="text-cyan-400 font-bold">Nhut Duy</span> — Full-Stack Developer & Creative Engineer.
+        <span className="text-cyan-400 font-bold">Nhut Duy</span> — Full-Stack & AI Systems Developer.
       </div>
     ),
   },
@@ -23,11 +23,11 @@ const INITIAL_LOGS: HistoryItem[] = [
     command: "stack --core",
     output: (
       <div className="text-slate-300">
-        [Frontend] React 19, Next.js App Router, TypeScript, Tailwind, Three.js, GSAP
+        [Backend] C#, ASP.NET Core Web API, Python
         <br />
-        [Backend] C#, .NET 8, ASP.NET Core Web API, Clean Architecture, EF Core
+        [Frontend] React, TypeScript, Vue.js
         <br />
-        [Database] SQL Server, PostgreSQL, Redis
+        [AI & Vision] OpenCV, YOLOv8, CNN, DINO Vision Transformers
       </div>
     ),
   },
@@ -36,7 +36,7 @@ const INITIAL_LOGS: HistoryItem[] = [
     output: (
       <div className="text-emerald-400 flex items-center gap-2">
         <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-        AVAILABLE FOR WORK // Open to full-time enterprise roles & high-impact contracts.
+        AVAILABLE FOR WORK // 5S Group Alum & 9.9 Graduation Score.
       </div>
     ),
   },
@@ -101,11 +101,13 @@ export default function TerminalSection({ onOpenContact }: { onOpenContact?: () 
       case "stack":
         output = (
           <div className="text-slate-300">
-            <span className="text-violet-300 font-bold">Frontend:</span> React, Next.js, TypeScript, Tailwind CSS, Material UI, Three.js, GSAP
+            <span className="text-violet-300 font-bold">Backend:</span> C#, ASP.NET Core Web API, Python
             <br />
-            <span className="text-cyan-300 font-bold">Backend:</span> C#, .NET 8, ASP.NET Core, REST, CQRS, MediatR
+            <span className="text-cyan-300 font-bold">Frontend:</span> React, TypeScript, Vue.js
             <br />
-            <span className="text-emerald-300 font-bold">Database & Tools:</span> SQL Server, PostgreSQL, Docker, Git, Redis, Figma
+            <span className="text-emerald-300 font-bold">AI & Vision:</span> OpenCV, YOLOv8, CNN, DINO Vision Transformers, Prompt Engineering, MCP, Cursor IDE
+            <br />
+            <span className="text-amber-300 font-bold">Tools & Domain:</span> Docker, Git, AWS S3, SignalR, Draw.io, Import-Export Logistics, Incoterms 2020, VNACCS Customs
           </div>
         );
         break;
@@ -113,9 +115,12 @@ export default function TerminalSection({ onOpenContact }: { onOpenContact?: () 
       case "projects":
         output = (
           <div className="text-slate-300 space-y-1">
-            <div><strong className="text-violet-300">1. ShoeDocX:</strong> Enterprise Document Management (.NET 8 + React + SQL Server)</div>
-            <div><strong className="text-cyan-300">2. AetherOS:</strong> Spatial Cloud Telemetry & AI Workspace (Next.js + Three.js)</div>
-            <div><strong className="text-indigo-300">3. OmniStore:</strong> High-Throughput Commerce Engine (ASP.NET + Redis)</div>
+            <div><strong className="text-violet-300">1. ShoeDocX:</strong> Import-Export Document Platform (OCR + VNACCS + C#) [9.9 Score]</div>
+            <div><strong className="text-cyan-300">2. SnapConvert:</strong> Image Format Conversion & Cloud Hub (.NET 8 + SignalR + AWS S3)</div>
+            <div><strong className="text-indigo-300">3. Testify:</strong> AI Task Management & QA Testing (AI + SendGrid + REST API)</div>
+            <div><strong className="text-amber-300">4. DussMann Meal:</strong> Multi-Tenant Enterprise Kiosk (ASP.NET Core + C#)</div>
+            <div><strong className="text-orange-300">5. VibeRemote:</strong> Remote AI Agent Mesh (C# + Telegram Bot + SignalR)</div>
+            <div><strong className="text-emerald-300">6. Vietnamese OCR:</strong> Offline Character Recognition (Python + CNN + DINO ViT)</div>
           </div>
         );
         break;

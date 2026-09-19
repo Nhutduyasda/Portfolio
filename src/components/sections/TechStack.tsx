@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Tooltip from "@mui/material/Tooltip";
-import { Cpu, Server, Database, Wrench, Sparkles, Layers } from "lucide-react";
+import { Cpu, Server, Wrench, Sparkles, Layers, Terminal, Globe } from "lucide-react";
 import SectionTitle from "@/components/ui/SectionTitle";
 import { skillsData } from "@/data/skills";
 import { SkillItem } from "@/types";
@@ -11,11 +11,12 @@ import { cn } from "@/lib/utils";
 
 const CATEGORIES = [
   { id: "all", label: "All Constellations", icon: Layers },
-  { id: "frontend", label: "Frontend", icon: Cpu },
-  { id: "backend", label: "Backend (.NET)", icon: Server },
-  { id: "database", label: "Database", icon: Database },
-  { id: "tools", label: "DevOps & Tools", icon: Wrench },
-  { id: "ai", label: "AI & Innovation", icon: Sparkles },
+  { id: "Backend", label: "Backend", icon: Server },
+  { id: "Frontend", label: "Frontend", icon: Cpu },
+  { id: "AI & Computer Vision", label: "AI & Vision", icon: Sparkles },
+  { id: "AI Development", label: "AI Development", icon: Terminal },
+  { id: "Tools & Infrastructure", label: "Tools & Infra", icon: Wrench },
+  { id: "Domain Knowledge", label: "Domain Knowledge", icon: Globe },
 ] as const;
 
 export default function TechStack() {

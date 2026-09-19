@@ -4,17 +4,34 @@ export const experienceData: TimelineItem[] = [
   {
     year: "NOW",
     tag: "Active Engineering",
-    title: "Full-Stack & Digital Experience Engineer",
-    subtitle: "Enterprise Applications, Modern Frontend & 3D Interactive Web",
+    title: "Full-Stack & AI Systems Developer",
+    subtitle: "Enterprise Applications, Modern Web & Computer Vision",
     description:
-      "Engineering high-performance enterprise platforms and immersive digital identity web apps. Focusing on full-stack architecture with React, Next.js, .NET 8, and AI agent integration.",
+      "Engineering high-performance enterprise platforms, AI agent controllers, and digital identity web apps. Focusing on C#, ASP.NET Core Web API, modern React, and AI vision pipelines.",
     highlights: [
       "Architecting scalable cloud-ready enterprise web solutions",
-      "Pioneering rich spatial 3D interactions and performance tuning",
-      "Continuous exploration of generative AI and developer tooling",
+      "Integrating AI agent workflows and Telegram bot workers",
+      "Researching Computer Vision with CNN and DINO Vision Transformers",
     ],
     badge: "Current Focus",
     isCurrent: true,
+  },
+  {
+    year: "07/2026 - 09/2026",
+    tag: "Enterprise Role",
+    title: "Software Engineering Intern",
+    subtitle: "5S Enterprise Software Solutions Co., Ltd. (5S Group)",
+    description:
+      "Participated in enterprise software development and finalized the internship report.",
+    company: "5S Enterprise Software Solutions Co., Ltd. (5S Group)",
+    period: "07/2026 - 09/2026",
+    highlights: [
+      "Participated in enterprise software development lifecycle",
+      "Collaborated on system architecture and production module delivery",
+      "Finalized the comprehensive internship report with high recognition",
+    ],
+    badge: "5S Group",
+    isCurrent: false,
   },
   {
     year: "2026",
@@ -22,11 +39,11 @@ export const experienceData: TimelineItem[] = [
     title: "Graduation Project: Capstone Defense",
     subtitle: "FPT Polytechnic — Score: 9.9 / 10",
     description:
-      "Engineered and defended the enterprise-grade document and operational platform ShoeDocX before an academic and industry review council, achieving a near-perfect evaluation score.",
+      "Successfully defended my Graduation Project (ShoeDocX), achieving an outstanding personal score of 9.9.",
     highlights: [
-      "Achieved exceptional 9.9 / 10 graduation score",
-      "Praised for production-ready Clean Architecture in .NET and sleek React UI",
-      "Demonstrated real-world business viability and high concurrent resilience",
+      "Achieved exceptional 9.9 / 10 graduation project score",
+      "Engineered ShoeDocX import-export platform with OCR & VNACCS customs integration",
+      "Praised for production-ready Clean Architecture in C# and Web API",
     ],
     badge: "Valedictorian Grade",
     score: "9.9 / 10",

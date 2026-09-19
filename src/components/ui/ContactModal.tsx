@@ -190,7 +190,7 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
         {/* Quick Socials Footer */}
         <div className="flex items-center justify-center gap-4 mt-6 pt-4 border-t border-white/[0.08]">
           <a
-            href="https://github.com/nhutduy"
+            href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors"
@@ -200,7 +200,7 @@ export default function ContactModal({ open, onClose }: ContactModalProps) {
           </a>
           <span className="text-white/20">•</span>
           <a
-            href="https://linkedin.com/in/nhutduy"
+            href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-white transition-colors"

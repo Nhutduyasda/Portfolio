@@ -25,11 +25,11 @@ function ProjectPreviewMockup({ project }: { project: Project }) {
             <span className="w-3 h-3 rounded-full bg-amber-500/80" />
             <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
             <span className="ml-2 text-[11px] text-slate-400 font-sans font-medium">
-              ShoeDocX // Enterprise Document Portal
+              ShoeDocX // VNACCS Customs & OCR Hub
             </span>
           </div>
           <span className="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/30 text-[10px] text-emerald-300">
-            RBAC ACTIVE
+            VNACCS VERIFIED
           </span>
         </div>
 
@@ -38,45 +38,45 @@ function ProjectPreviewMockup({ project }: { project: Project }) {
           <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-violet-600/20 text-violet-300 flex items-center justify-center font-mono text-xs">
-                DOC
+                INV
               </div>
               <div>
-                <div className="text-xs font-bold text-slate-200">ISO-9001_Audit_Manifest_v3.pdf</div>
-                <div className="text-[10px] text-slate-400 font-mono">Dept: Operations • Encrypted 256-bit</div>
+                <div className="text-xs font-bold text-slate-200">Commercial_Invoice_CI-88920.pdf</div>
+                <div className="text-[10px] text-slate-400 font-mono">Incoterms: FOB Haiphong • OCR Extracted</div>
               </div>
             </div>
             <span className="px-2 py-1 rounded bg-violet-950/60 border border-violet-500/30 text-[10px] text-violet-300 font-mono">
-              APPROVED
+              MATCHED
             </span>
           </div>
 
           <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-cyan-600/20 text-cyan-300 flex items-center justify-center font-mono text-xs">
-                XLS
+                PKL
               </div>
               <div>
-                <div className="text-xs font-bold text-slate-200">Q3_Production_Throughput_Raw.xlsx</div>
-                <div className="text-[10px] text-slate-400 font-mono">Dept: Supply Chain • OCR Parsed</div>
+                <div className="text-xs font-bold text-slate-200">Export_Packing_List_PL-4021.xlsx</div>
+                <div className="text-[10px] text-slate-400 font-mono">Gross Wt: 14,200 kg • Auto-Validated</div>
               </div>
             </div>
             <span className="px-2 py-1 rounded bg-cyan-950/60 border border-cyan-500/30 text-[10px] text-cyan-300 font-mono">
-              INDEXED
+              CLEARED
             </span>
           </div>
 
           <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-indigo-600/20 text-indigo-300 flex items-center justify-center font-mono text-xs">
-                SEC
+                CUS
               </div>
               <div>
-                <div className="text-xs font-bold text-slate-200">Executive_Board_Authorization_2026.pdf</div>
-                <div className="text-[10px] text-slate-400 font-mono">Digital Signature • 4/4 Verified</div>
+                <div className="text-xs font-bold text-slate-200">VNACCS_Customs_Declaration_Manifest.xml</div>
+                <div className="text-[10px] text-slate-400 font-mono">Single Window API • Channel: Green</div>
               </div>
             </div>
-            <span className="px-2 py-1 rounded bg-amber-950/60 border border-amber-500/30 text-[10px] text-amber-300 font-mono">
-              IN REVIEW
+            <span className="px-2 py-1 rounded bg-emerald-950/60 border border-emerald-500/30 text-[10px] text-emerald-300 font-mono">
+              SUBMITTED
             </span>
           </div>
         </div>
@@ -85,15 +85,15 @@ function ProjectPreviewMockup({ project }: { project: Project }) {
         <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 relative z-10">
           <span className="flex items-center gap-1.5 text-slate-300">
             <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Clean Architecture .NET 8</span>
+            <span>Graduation Project: 9.9 / 10 Score</span>
           </span>
-          <span className="font-mono text-cyan-400">Indexed: 142,890 Files</span>
+          <span className="font-mono text-cyan-400">OCR Accuracy: 99.4%</span>
         </div>
       </div>
     );
   }
 
-  if (project.id === "aetheros") {
+  if (project.id === "snapconvert") {
     return (
       <div className="w-full h-full min-h-[300px] sm:min-h-[360px] p-4 sm:p-6 bg-[#080B10] rounded-2xl border border-white/10 flex flex-col justify-between font-mono text-xs overflow-hidden relative group">
         <div className="absolute inset-0 bg-gradient-to-tr from-cyan-600/15 via-transparent to-violet-600/15 opacity-70 pointer-events-none" />
@@ -104,69 +104,209 @@ function ProjectPreviewMockup({ project }: { project: Project }) {
             <span className="w-3 h-3 rounded-full bg-amber-500/80" />
             <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
             <span className="ml-2 text-[11px] text-slate-400 font-sans font-medium">
-              AetherOS // Spatial Cloud Telemetry
+              SnapConvert // Pipeline Telemetry
             </span>
           </div>
           <span className="flex items-center gap-1 text-[10px] text-cyan-400 font-mono">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
-            60 FPS STREAM
+            SignalR Active
           </span>
         </div>
 
-        {/* 3D Telemetry Simulation Graphics */}
-        <div className="my-6 relative z-10 flex items-center justify-center">
-          <div className="relative w-48 h-40 flex items-center justify-center">
-            <div className="absolute inset-0 border border-cyan-500/20 rounded-full animate-spin" style={{ animationDuration: "20s" }} />
-            <div className="absolute inset-4 border border-violet-500/30 rounded-full animate-spin" style={{ animationDuration: "12s", animationDirection: "reverse" }} />
-            <div className="w-16 h-16 rounded-full bg-cyan-500/20 border border-cyan-400/50 flex flex-col items-center justify-center text-center shadow-[0_0_30px_rgba(34,211,238,0.5)]">
-              <Activity className="w-6 h-6 text-cyan-300" />
+        <div className="my-4 space-y-3 relative z-10 font-sans">
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-xs font-bold text-slate-200">raw_render_4k.png ➔ WebP (Quality 90)</span>
+              <span className="text-[10px] font-mono text-emerald-400">100% Uploaded</span>
             </div>
-            <div className="absolute top-0 right-2 px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] text-cyan-300">
-              CLUSTER A: 99.98%
+            <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div className="w-full h-full bg-gradient-to-r from-cyan-400 to-emerald-400" />
             </div>
-            <div className="absolute bottom-1 left-2 px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[9px] text-violet-300">
-              LATENCY: 4.2ms
+            <div className="flex items-center justify-between text-[10px] text-slate-400 font-mono mt-1.5">
+              <span>S3 Bucket: s3://snapconvert-assets/</span>
+              <span>Reduced: -78.4%</span>
+            </div>
+          </div>
+
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+            <div className="flex items-center justify-between mb-1.5">
+              <span className="text-xs font-bold text-slate-200">hero_asset_bundle.zip (84 images)</span>
+              <span className="text-[10px] font-mono text-cyan-400">SignalR Worker: 84/84</span>
+            </div>
+            <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
+              <div className="w-full h-full bg-cyan-400" />
             </div>
           </div>
         </div>
 
         <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 relative z-10">
-          <span>Three.js + WebSockets Go</span>
-          <span className="text-violet-400 font-mono">AI Anomaly Scanner: NORMAL</span>
+          <span>.NET 8 Web API + AWS S3</span>
+          <span className="text-cyan-400 font-mono">Latency: 12ms</span>
         </div>
       </div>
     );
   }
 
-  // Fallback / Standard Graphic for OmniStore or Nexus
+  if (project.id === "testify") {
+    return (
+      <div className="w-full h-full min-h-[300px] sm:min-h-[360px] p-4 sm:p-6 bg-[#0B0A12] rounded-2xl border border-white/10 flex flex-col justify-between font-mono text-xs overflow-hidden relative group">
+        <div className="absolute inset-0 bg-gradient-to-tr from-violet-600/15 via-transparent to-indigo-600/15 opacity-70 pointer-events-none" />
+
+        <div className="flex items-center justify-between pb-3 border-b border-white/10 relative z-10">
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+            <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+            <span className="ml-2 text-[11px] text-slate-400 font-sans font-medium">
+              Testify // AI Test Orchestrator
+            </span>
+          </div>
+          <span className="px-2 py-0.5 rounded bg-violet-950/80 border border-violet-500/30 text-[10px] text-violet-300">
+            SendGrid Active
+          </span>
+        </div>
+
+        <div className="my-4 space-y-2.5 relative z-10 font-sans">
+          <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between">
+            <div>
+              <div className="text-xs font-bold text-slate-200">TC-104: Auth JWT Expiry Edge Case</div>
+              <div className="text-[10px] text-slate-400 font-mono">AI Generated • 6 Assertions Evaluated</div>
+            </div>
+            <span className="px-2 py-1 rounded bg-emerald-950/60 border border-emerald-500/30 text-[10px] text-emerald-300 font-mono">
+              PASSED
+            </span>
+          </div>
+
+          <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between">
+            <div>
+              <div className="text-xs font-bold text-slate-200">TC-105: SendGrid Magic Link Verification</div>
+              <div className="text-[10px] text-slate-400 font-mono">Transactional Dispatch • 99.8% Delivery</div>
+            </div>
+            <span className="px-2 py-1 rounded bg-violet-950/60 border border-violet-500/30 text-[10px] text-violet-300 font-mono">
+              DELIVERED
+            </span>
+          </div>
+        </div>
+
+        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 relative z-10">
+          <span>AI Spec Parser + REST API</span>
+          <span className="text-violet-400 font-mono">Automated QA Coverage: 92%</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (project.id === "dussmann-meal") {
+    return (
+      <div className="w-full h-full min-h-[300px] sm:min-h-[360px] p-4 sm:p-6 bg-[#090C12] rounded-2xl border border-white/10 flex flex-col justify-between font-mono text-xs overflow-hidden relative">
+        <div className="flex items-center justify-between pb-3 border-b border-white/10 relative z-10">
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+            <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+            <span className="ml-2 text-[11px] text-slate-400 font-sans font-medium">
+              DussMann Meal // Kiosk Auth Terminal
+            </span>
+          </div>
+          <span className="text-[10px] text-cyan-400">Multi-Tenant Kiosk</span>
+        </div>
+
+        <div className="my-4 space-y-2.5 relative z-10 font-sans">
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between">
+            <div>
+              <div className="text-xs font-bold text-slate-200">Terminal Kiosk #03 (Canteen Hall B)</div>
+              <div className="text-[10px] text-slate-400 font-mono">Department: Engineering • Subsidy Applied</div>
+            </div>
+            <span className="px-2 py-1 rounded bg-cyan-950/60 border border-cyan-500/30 text-[10px] text-cyan-300 font-mono">
+              AUTHENTICATED
+            </span>
+          </div>
+          <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08] flex items-center justify-between">
+            <div>
+              <div className="text-xs font-bold text-slate-200">Kitchen Production Manifest</div>
+              <div className="text-[10px] text-slate-400 font-mono">1,450 Meals Confirmed • Shift A</div>
+            </div>
+            <span className="px-2 py-1 rounded bg-emerald-950/60 border border-emerald-500/30 text-[10px] text-emerald-300 font-mono">
+              IN PREPARATION
+            </span>
+          </div>
+        </div>
+
+        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 relative z-10">
+          <span>ASP.NET Core Multi-Tenant</span>
+          <span className="text-cyan-400">Zero-Wait Checkin</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (project.id === "viberemote") {
+    return (
+      <div className="w-full h-full min-h-[300px] sm:min-h-[360px] p-4 sm:p-6 bg-[#0D0B08] rounded-2xl border border-white/10 flex flex-col justify-between font-mono text-xs overflow-hidden relative">
+        <div className="flex items-center justify-between pb-3 border-b border-white/10 relative z-10">
+          <div className="flex items-center gap-1.5">
+            <span className="w-3 h-3 rounded-full bg-rose-500/80" />
+            <span className="w-3 h-3 rounded-full bg-amber-500/80" />
+            <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
+            <span className="ml-2 text-[11px] text-slate-400 font-sans font-medium">
+              VibeRemote // Telegram AI Mesh
+            </span>
+          </div>
+          <span className="text-[10px] text-amber-400">Telegram Bot Online</span>
+        </div>
+
+        <div className="my-4 space-y-2.5 relative z-10 font-sans">
+          <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+            <div className="text-[11px] font-mono text-cyan-300">user@telegram: /dispatch --model dino-vit --run</div>
+            <div className="text-[10px] font-mono text-slate-400 mt-1">
+              [SignalR Socket] Command routed to Local Worker Daemon (C# Windows Service)
+            </div>
+            <div className="text-[10px] font-mono text-emerald-400 mt-0.5">
+              &gt;&gt; AI Task executed. Response echoed back to Telegram in 180ms.
+            </div>
+          </div>
+        </div>
+
+        <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 relative z-10">
+          <span>C# + Telegram API + SignalR</span>
+          <span className="text-amber-400">Duplex Socket Mesh</span>
+        </div>
+      </div>
+    );
+  }
+
+  // Fallback for Vietnamese Handwriting Recognition or others
   return (
-    <div className="w-full h-full min-h-[300px] sm:min-h-[360px] p-4 sm:p-6 bg-[#090C12] rounded-2xl border border-white/10 flex flex-col justify-between font-mono text-xs overflow-hidden relative">
+    <div className="w-full h-full min-h-[300px] sm:min-h-[360px] p-4 sm:p-6 bg-[#080D0A] rounded-2xl border border-white/10 flex flex-col justify-between font-mono text-xs overflow-hidden relative">
       <div className="flex items-center justify-between pb-3 border-b border-white/10 relative z-10">
         <div className="flex items-center gap-1.5">
           <span className="w-3 h-3 rounded-full bg-rose-500/80" />
           <span className="w-3 h-3 rounded-full bg-amber-500/80" />
           <span className="w-3 h-3 rounded-full bg-emerald-500/80" />
           <span className="ml-2 text-[11px] text-slate-400 font-sans font-medium">
-            {project.title} // Architecture Console
+            Vietnamese OCR // CNN + DINO ViT
           </span>
         </div>
-        <span className="text-[10px] text-violet-400">{project.category}</span>
+        <span className="text-[10px] text-emerald-400">PyTorch Edge</span>
       </div>
 
-      <div className="my-6 space-y-3 relative z-10 font-sans">
-        <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
-          <span className="text-xs text-slate-300">{project.highlights[0] || "High-throughput pipeline"}</span>
-          <span className="font-mono text-[10px] text-cyan-400">99.99% Uptime</span>
-        </div>
-        <div className="p-3.5 rounded-xl bg-white/[0.02] border border-white/[0.06] flex items-center justify-between">
-          <span className="text-xs text-slate-300">{project.highlights[1] || "Zero latency sync"}</span>
-          <span className="font-mono text-[10px] text-violet-400">Optimized</span>
+      <div className="my-4 space-y-2.5 relative z-10 font-sans">
+        <div className="p-3.5 rounded-xl bg-white/[0.03] border border-white/[0.08]">
+          <div className="text-xs font-bold text-slate-200">Diacritic Tokenizer: [nghiên cứu] [phát triển]</div>
+          <div className="text-[10px] text-slate-400 font-mono mt-1">
+            CNN Spatial Features ➔ DINO ViT Attention Maps
+          </div>
+          <div className="mt-2 flex items-center gap-2">
+            <span className="text-[10px] font-mono text-emerald-300">Confidence: 98.7%</span>
+            <span className="text-white/20">•</span>
+            <span className="text-[10px] font-mono text-slate-400">Offline Inference: 35ms</span>
+          </div>
         </div>
       </div>
 
       <div className="pt-3 border-t border-white/10 flex items-center justify-between text-[11px] text-slate-400 relative z-10">
-        <span>{project.techStack.slice(0, 3).join(" • ")}</span>
-        <span className="text-cyan-400">Production Ready</span>
+        <span>Python • CNN • DINO Vision Transformers</span>
+        <span className="text-emerald-400 font-mono">Offline Ready</span>
       </div>
     </div>
   );

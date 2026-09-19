@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     "Creative Developer",
     "Portfolio",
   ],
-  authors: [{ name: "Nhut Duy", url: "https://github.com/nhutduy" }],
+  authors: [{ name: "Nhut Duy", url: "https://github.com/Nhutduyasda" }],
   creator: "Nhut Duy",
   openGraph: {
     title: "Nhut Duy | Full-stack Developer",

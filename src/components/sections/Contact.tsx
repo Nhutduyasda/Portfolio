@@ -74,7 +74,7 @@ export default function Contact({ onOpenContact }: ContactProps) {
 
           {/* GitHub */}
           <a
-            href="https://github.com/nhutduy"
+            href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#080A0D]/80 hover:bg-white/10 border border-white/10 text-slate-200 transition-all backdrop-blur-md"
@@ -85,7 +85,7 @@ export default function Contact({ onOpenContact }: ContactProps) {
 
           {/* LinkedIn */}
           <a
-            href="https://linkedin.com/in/nhutduy"
+            href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#080A0D]/80 hover:bg-white/10 border border-white/10 text-slate-200 transition-all backdrop-blur-md"

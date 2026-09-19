@@ -120,7 +120,7 @@ export default function Hero({ onOpenContact }: HeroProps) {
             </MagneticButton>
 
             <MagneticButton
-              href="https://github.com/nhutduy"
+              href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
               className="px-5 py-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] border border-white/10 hover:border-white/20 text-slate-200 font-medium text-sm tracking-wide flex items-center gap-2 transition-all backdrop-blur-md"

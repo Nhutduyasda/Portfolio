@@ -13,14 +13,14 @@ export interface Project {
   liveUrl?: string;
   githubUrl?: string;
   featured: boolean;
-  category: "Enterprise" | "Full-Stack" | "Cloud / AI" | "Design System";
+  category: string;
   accentColor: string;
   badge: string;
 }
 
 export interface SkillItem {
   name: string;
-  category: "frontend" | "backend" | "database" | "tools" | "ai";
+  category: string;
   level: number; // 0 - 100
   experience: string;
   description: string;
@@ -37,6 +37,8 @@ export interface TimelineItem {
   badge?: string;
   isCurrent?: boolean;
   score?: string;
+  company?: string;
+  period?: string;
 }
 
 export interface AchievementItem {
@@ -47,6 +49,7 @@ export interface AchievementItem {
   description: string;
   highlight?: boolean;
   badge?: string;
+  projectLink?: string;
 }
 
 export interface SocialLink {
