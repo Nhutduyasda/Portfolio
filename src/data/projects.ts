@@ -21,7 +21,7 @@ export const projectsData: Project[] = [
     architecture:
       "Clean Architecture with C# ASP.NET Web API backend, OCR processing pipeline, and responsive enterprise management portal.",
     highlights: [
-      "Achieved 9.9 / 10 score in Graduation Project Defense",
+
       "Reduced customs documentation turnaround by 75%",
       "Full VNACCS declaration compliance",
     ],
@@ -83,6 +83,7 @@ export const projectsData: Project[] = [
     architecture:
       "REST API microservices with OpenAI / LLM function calling and SendGrid transactional email dispatch.",
     highlights: [
+      "Achieved 9.9 / 10 score in Graduation Project Defense",
       "Automated 80%+ of repetitive test case drafting",
       "Enterprise email delivery rate > 99.5%",
       "Intuitive task workflow UI",
