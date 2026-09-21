@@ -13,12 +13,16 @@ import Achievements from "@/components/sections/Achievements";
 import Contact from "@/components/sections/Contact";
 import ContactModal from "@/components/ui/ContactModal";
 import CustomCursor from "@/components/ui/CustomCursor";
+import InteractiveStarfield from "@/components/ui/InteractiveStarfield";
 
 export default function Home() {
   const [contactOpen, setContactOpen] = useState(false);
 
   return (
     <div className="relative min-h-screen bg-[#050505] text-slate-100 selection:bg-violet-600/30 selection:text-white">
+      {/* Global Interactive Starfield Canvas (Fixed Background) */}
+      <InteractiveStarfield />
+
       {/* Custom Precision & Dynamic Spring Cursor (Desktop only) */}
       <CustomCursor />
 

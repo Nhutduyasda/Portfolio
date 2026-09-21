@@ -11,7 +11,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="relative border-t border-white/[0.06] bg-[#050505] text-slate-400 py-12 sm:py-16 px-6 sm:px-12">
+    <footer className="relative border-t border-white/[0.06] bg-[#050505]/60 backdrop-blur-sm text-slate-400 py-12 sm:py-16 px-6 sm:px-12">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs font-mono">
         {/* Brand & Subtitle */}
         <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
