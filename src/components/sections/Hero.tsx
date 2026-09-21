@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { motion, Variants } from "framer-motion";
-import { ArrowDown, Sparkles, Terminal, Code2 } from "lucide-react";
+import { ArrowDown, Sparkles } from "lucide-react";
 import dynamic from "next/dynamic";
 import { GithubIcon } from "@/components/ui/Icons";
 import MagneticButton from "@/components/ui/MagneticButton";
@@ -32,13 +32,23 @@ const itemVariants: Variants = {
   },
 };
 
-const TECH_PILLS = ["React", "Next.js", "TypeScript", ".NET 8", "SQL Server", "Three.js", "AI"];
+const TECH_PILLS = [
+  "React",
+  "Next.js",
+  "TypeScript",
+  ".NET 8",
+  "SQL Server",
+  "Three.js",
+  "AI",
+];
 
 interface HeroProps {
   onOpenContact: () => void;
 }
 
 export default function Hero({ onOpenContact }: HeroProps) {
+  const heroRef = useRef<HTMLElement>(null);
+
   const scrollToWork = () => {
     const el = document.getElementById("work");
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -47,20 +57,34 @@ export default function Hero({ onOpenContact }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-6 sm:px-12 lg:px-16 overflow-hidden"
+      ref={heroRef}
+      className="relative min-h-screen flex flex-col justify-center pt-24 pb-16 px-6 sm:px-12 lg:px-16 overflow-hidden isolate"
     >
-      {/* Background glow ambients */}
-      <div className="pointer-events-none absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-violet-900/15 rounded-full blur-[120px]" />
-      <div className="pointer-events-none absolute top-1/3 right-1/4 w-[450px] h-[450px] bg-cyan-600/10 rounded-full blur-[120px]" />
-      <div className="pointer-events-none absolute inset-0 bg-cyber-grid opacity-30" />
+      {/* Large Deep Ambient Glows Blending Canvas into Deep Space */}
+      <div className="pointer-events-none absolute top-1/2 right-[12%] -translate-y-1/2 w-[750px] h-[750px] bg-violet-900/15 rounded-full blur-[170px]" />
+      <div className="pointer-events-none absolute top-1/3 right-[4%] w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-[150px]" />
+      <div className="pointer-events-none absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-violet-900/10 rounded-full blur-[130px]" />
+      <div className="pointer-events-none absolute inset-0 bg-cyber-grid opacity-20" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        {/* Left Column: Typography & Narrative (7 cols) */}
+      {/* Desktop Full-Bleed 3D Visual Layer (z-10 isolate) */}
+      <div className="hidden lg:block absolute inset-0 pointer-events-none z-10 isolate overflow-hidden">
+        <HeroScene eventSource={heroRef} />
+      </div>
+
+      {/* Left Readability Gradient Overlay Mask on Desktop (z-20) */}
+      <div
+        className="hidden lg:block absolute inset-y-0 left-0 w-[56%] pointer-events-none z-20 bg-gradient-to-r from-[#050505] via-[#050505]/90 to-transparent"
+        aria-hidden="true"
+      />
+
+      {/* Hero Narrative & Content Stream (z-30 isolate) */}
+      <div className="relative z-30 isolate w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between min-h-[calc(100vh-6rem)]">
+        {/* Left Column: Typography & Narrative (Takes ~54% on desktop, relative z-30 isolate) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="lg:col-span-7 flex flex-col items-start"
+          className="w-full lg:w-[54%] flex flex-col items-start pt-6 lg:pt-0 relative z-30 isolate"
         >
           {/* Status Badge */}
           <motion.div variants={itemVariants} className="mb-6">
@@ -74,7 +98,10 @@ export default function Hero({ onOpenContact }: HeroProps) {
           </motion.div>
 
           {/* Salutation */}
-          <motion.div variants={itemVariants} className="text-slate-400 text-sm sm:text-base font-mono tracking-wide mb-2 flex items-center gap-2">
+          <motion.div
+            variants={itemVariants}
+            className="text-slate-400 text-sm sm:text-base font-mono tracking-wide mb-2 flex items-center gap-2"
+          >
             <span>Hello, I&apos;m</span>
             <span className="w-8 h-[1px] bg-white/20" />
           </motion.div>
@@ -106,11 +133,16 @@ export default function Hero({ onOpenContact }: HeroProps) {
             variants={itemVariants}
             className="text-slate-300 text-base sm:text-lg font-light leading-relaxed max-w-xl mb-8"
           >
-            I build modern, scalable and immersive digital experiences. Bridging enterprise-grade reliability in .NET & distributed systems with high-end creative frontend engineering.
+            I build modern, scalable and immersive digital experiences. Bridging
+            enterprise-grade reliability in .NET & distributed systems with
+            high-end creative frontend engineering.
           </motion.p>
 
           {/* Action CTAs */}
-          <motion.div variants={itemVariants} className="flex flex-wrap items-center gap-4 mb-10">
+          <motion.div
+            variants={itemVariants}
+            className="flex flex-wrap items-center gap-4 mb-10"
+          >
             <MagneticButton
               onClick={scrollToWork}
               className="px-6 py-3 rounded-xl bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium text-sm tracking-wide shadow-lg shadow-violet-600/30 flex items-center gap-2 transition-all"
@@ -156,22 +188,19 @@ export default function Hero({ onOpenContact }: HeroProps) {
           </motion.div>
         </motion.div>
 
-        {/* Right Column: 3D Developer Core Scene (5 cols) */}
+        {/* Mobile 3D Visual Layer (in-flow below text, z-10 isolate, hidden on desktop lg) */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.3, ease: "easeOut" }}
-          className="lg:col-span-5 flex items-center justify-center relative"
+          transition={{ duration: 1.0, delay: 0.3, ease: "easeOut" }}
+          className="lg:hidden w-full h-[360px] sm:h-[420px] relative z-10 isolate mt-6 flex items-center justify-center pointer-events-none overflow-hidden"
         >
-          {/* 3D Scene Wrapper */}
-          <div className="w-full flex items-center justify-center">
-            <HeroScene />
-          </div>
+          <HeroScene isMobileView />
         </motion.div>
       </div>
 
       {/* Subtle Bottom Scroll Indicator */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-50 hover:opacity-100 transition-opacity">
+      <div className="relative z-20 mt-8 mb-2 flex flex-col items-center justify-center gap-1.5 opacity-50 hover:opacity-100 transition-opacity">
         <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase">
           SCROLL
         </span>

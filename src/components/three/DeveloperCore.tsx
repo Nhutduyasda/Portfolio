@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import { Float, Html } from "@react-three/drei";
 import * as THREE from "three";
@@ -10,114 +10,199 @@ interface DeveloperCoreProps {
 }
 
 export default function DeveloperCore({ isMobile = false }: DeveloperCoreProps) {
-  const outerWireframeRef = useRef<THREE.Mesh>(null);
-  const innerSphereRef = useRef<THREE.Mesh>(null);
-  const ring1Ref = useRef<THREE.Mesh>(null);
-  const ring2Ref = useRef<THREE.Mesh>(null);
   const groupRef = useRef<THREE.Group>(null);
+  const innerEnergyRef = useRef<THREE.Mesh>(null);
+  const glassShellRef = useRef<THREE.Mesh>(null);
+  const digitalGeometryRef = useRef<THREE.Mesh>(null);
+  const halo1Ref = useRef<THREE.Mesh>(null);
+  const halo2Ref = useRef<THREE.Mesh>(null);
+  const dataPointsGroupRef = useRef<THREE.Group>(null);
+
+  // 10 Subtle Data Particles on wireframe/outer layer
+  const dataNodes = useMemo(() => {
+    return Array.from({ length: 10 }).map((_, i) => {
+      const phi = Math.acos(-1 + (2 * i) / 10);
+      const theta = Math.sqrt(10 * Math.PI) * phi;
+      const radius = 1.78;
+      return {
+        initialX: radius * Math.cos(theta) * Math.sin(phi),
+        initialY: radius * Math.sin(theta) * Math.sin(phi),
+        initialZ: radius * Math.cos(phi),
+        speed: 0.4 + (i % 3) * 0.2,
+        phase: i * 0.7,
+      };
+    });
+  }, []);
 
   useFrame((state, delta) => {
-    const mouseX = state.pointer.x * 0.4;
-    const mouseY = state.pointer.y * 0.4;
-
-    // Smooth tilt to mouse
+    // 1. Smooth Mouse Parallax Rotation
     if (groupRef.current) {
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(groupRef.current.rotation.y, mouseX, 0.05);
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(groupRef.current.rotation.x, -mouseY, 0.05);
+      const targetRotY = state.pointer.x * 0.16;
+      const targetRotX = -state.pointer.y * 0.12;
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(
+        groupRef.current.rotation.y,
+        targetRotY,
+        0.05
+      );
+      groupRef.current.rotation.x = THREE.MathUtils.lerp(
+        groupRef.current.rotation.x,
+        targetRotX,
+        0.05
+      );
     }
 
-    // Outer wireframe rotation
-    if (outerWireframeRef.current) {
-      outerWireframeRef.current.rotation.y += delta * 0.25;
-      outerWireframeRef.current.rotation.z += delta * 0.15;
+    const time = state.clock.elapsedTime;
+
+    // 2. Central Energy Core: Subtle breathing pulse & slow spin
+    if (innerEnergyRef.current) {
+      innerEnergyRef.current.rotation.y -= delta * 0.2;
+      innerEnergyRef.current.rotation.z += delta * 0.08;
+      const pulse = 1 + Math.sin(time * 1.8) * 0.035;
+      innerEnergyRef.current.scale.set(pulse, pulse, pulse);
     }
 
-    // Inner pulsing sphere
-    if (innerSphereRef.current) {
-      innerSphereRef.current.rotation.y -= delta * 0.35;
-      const pulse = 1 + Math.sin(state.clock.elapsedTime * 2.5) * 0.06;
-      innerSphereRef.current.scale.set(pulse, pulse, pulse);
+    // 3. Glass Outer Shell: Slow refractive shift
+    if (glassShellRef.current) {
+      glassShellRef.current.rotation.y += delta * 0.08;
+      glassShellRef.current.rotation.x = Math.sin(time * 0.4) * 0.05;
     }
 
-    // Rotating orbital rings
-    if (ring1Ref.current) {
-      ring1Ref.current.rotation.z += delta * 0.3;
-      ring1Ref.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.5) * 0.3;
+    // 4. Digital Geometry Wireframe: Alternate slow spin
+    if (digitalGeometryRef.current) {
+      digitalGeometryRef.current.rotation.y += delta * 0.1;
+      digitalGeometryRef.current.rotation.x -= delta * 0.06;
+      digitalGeometryRef.current.rotation.z += delta * 0.04;
     }
-    if (ring2Ref.current) {
-      ring2Ref.current.rotation.y += delta * 0.22;
-      ring2Ref.current.rotation.z -= delta * 0.15;
+
+    // 5. Energy Halos: Slow celestial rotation
+    if (halo1Ref.current) {
+      halo1Ref.current.rotation.z += delta * 0.12;
+      halo1Ref.current.rotation.x = Math.sin(time * 0.3) * 0.25;
+    }
+    if (halo2Ref.current) {
+      halo2Ref.current.rotation.y -= delta * 0.1;
+      halo2Ref.current.rotation.z += delta * 0.08;
+    }
+
+    // 6. Data Particles Orbiting Wireframe
+    if (dataPointsGroupRef.current) {
+      dataPointsGroupRef.current.rotation.y += delta * 0.18;
+      dataPointsGroupRef.current.rotation.z = Math.sin(time * 0.5) * 0.1;
     }
   });
 
   return (
-    <Float speed={2} rotationIntensity={0.2} floatIntensity={0.5}>
+    <Float
+      speed={1.5}
+      rotationIntensity={0.1}
+      floatIntensity={isMobile ? 0.2 : 0.35}
+    >
       <group ref={groupRef}>
-        {/* Core Center Monogram Badge */}
-        <Html center distanceFactor={10} position={[0, 0, 0]}>
-          <div className="pointer-events-none select-none flex flex-col items-center justify-center">
-            <div className="w-14 h-14 rounded-full bg-black/60 backdrop-blur-md border border-violet-400/40 flex items-center justify-center shadow-[0_0_30px_rgba(124,58,237,0.6)]">
-              <span className="font-mono font-black text-sm tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-violet-400 to-cyan-300">
-                ND
-              </span>
-            </div>
-            <div className="mt-1 px-2 py-0.5 rounded-full bg-violet-950/70 border border-violet-500/30 text-[9px] font-mono tracking-wider text-cyan-300 uppercase">
-              DEV CORE
-            </div>
-          </div>
-        </Html>
-
-        {/* Inner Glowing Sphere */}
-        <mesh ref={innerSphereRef}>
-          <sphereGeometry args={[1.05, 32, 32]} />
-          <meshStandardMaterial
-            color="#5B21B6"
+        {/* Layer 1: Central Glowing Energy Core */}
+        <mesh ref={innerEnergyRef}>
+          <sphereGeometry args={[0.85, 32, 32]} />
+          <meshPhysicalMaterial
+            color="#4C1D95"
             emissive="#7C3AED"
-            emissiveIntensity={0.65}
-            roughness={0.2}
-            metalness={0.8}
-            wireframe={false}
+            emissiveIntensity={1.5}
+            roughness={0.15}
+            metalness={0.2}
+            clearcoat={0.8}
+            clearcoatRoughness={0.2}
+          />
+        </mesh>
+
+        {/* Layer 2: Transparent Refractive Glass Outer Shell */}
+        <mesh ref={glassShellRef}>
+          <sphereGeometry args={[1.35, 48, 48]} />
+          <meshPhysicalMaterial
+            transmission={0.92}
             transparent
             opacity={0.85}
+            roughness={0.08}
+            ior={1.45}
+            thickness={0.6}
+            clearcoat={1.0}
+            clearcoatRoughness={0.1}
+            color="#E0F2FE"
+            attenuationColor="#8B5CF6"
+            attenuationDistance={0.8}
           />
         </mesh>
 
-        {/* Outer Wireframe Icosahedron */}
-        <mesh ref={outerWireframeRef}>
-          <icosahedronGeometry args={[1.65, 1]} />
+        {/* Layer 3: Digital Geometry Wireframe (Subtle & Thin) */}
+        <mesh ref={digitalGeometryRef}>
+          <icosahedronGeometry args={[1.78, 1]} />
           <meshStandardMaterial
-            color="#22D3EE"
-            emissive="#0891B2"
-            emissiveIntensity={0.5}
+            color="#38BDF8"
+            emissive="#0284C7"
+            emissiveIntensity={0.25}
             wireframe
             transparent
-            opacity={0.7}
+            opacity={0.22}
           />
         </mesh>
 
-        {/* Orbital Ring 1 (Cyan) */}
-        <mesh ref={ring1Ref} rotation={[Math.PI / 3, 0, 0]}>
-          <torusGeometry args={[2.1, 0.02, 16, 100]} />
-          <meshStandardMaterial
+        {/* Layer 4: Soft Atmospheric Energy Halos */}
+        {/* Halo 1: Violet/Indigo Soft Halo */}
+        <mesh ref={halo1Ref} rotation={[Math.PI / 3.2, 0.2, 0]}>
+          <torusGeometry args={[2.3, 0.008, 16, 100]} />
+          <meshBasicMaterial
+            color="#8B5CF6"
+            transparent
+            opacity={0.28}
+            blending={THREE.AdditiveBlending}
+          />
+        </mesh>
+
+        {/* Halo 2: Cyan Outer Soft Halo */}
+        <mesh ref={halo2Ref} rotation={[-Math.PI / 4, -0.3, 0.2]}>
+          <torusGeometry args={[2.65, 0.009, 16, 100]} />
+          <meshBasicMaterial
             color="#22D3EE"
-            emissive="#22D3EE"
-            emissiveIntensity={0.7}
             transparent
-            opacity={0.6}
+            opacity={0.22}
+            blending={THREE.AdditiveBlending}
           />
         </mesh>
 
-        {/* Orbital Ring 2 (Purple) */}
-        <mesh ref={ring2Ref} rotation={[-Math.PI / 4, Math.PI / 6, 0]}>
-          <torusGeometry args={[2.35, 0.025, 16, 100]} />
-          <meshStandardMaterial
-            color="#A78BFA"
-            emissive="#7C3AED"
-            emissiveIntensity={0.7}
-            transparent
-            opacity={0.55}
-          />
-        </mesh>
+        {/* Layer 5: Data Flow Points on Geometry */}
+        <group ref={dataPointsGroupRef}>
+          {dataNodes.map((node, idx) => (
+            <mesh
+              key={idx}
+              position={[node.initialX, node.initialY, node.initialZ]}
+            >
+              <sphereGeometry args={[0.024, 8, 8]} />
+              <meshBasicMaterial
+                color={idx % 2 === 0 ? "#22D3EE" : "#A78BFA"}
+                transparent
+                opacity={0.8}
+                blending={THREE.AdditiveBlending}
+              />
+            </mesh>
+          ))}
+        </group>
+
+        {/* Layer 6: Minimalist Holographic Identity (ND // DIGITAL CORE) */}
+        <Html
+          center
+          distanceFactor={isMobile ? 10 : 8.5}
+          position={[0, 0, 1.48]}
+          zIndexRange={[5, 0]}
+          className="pointer-events-none select-none"
+        >
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-[#080A0D]/75 backdrop-blur-md border border-white/15 shadow-[0_0_25px_rgba(124,58,237,0.35)] whitespace-nowrap">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shadow-[0_0_8px_#34D399]" />
+            <span className="font-mono font-black text-xs tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-violet-300 via-indigo-200 to-cyan-300">
+              ND
+            </span>
+            <span className="w-[1px] h-3 bg-white/20" />
+            <span className="text-[9px] font-mono tracking-widest text-slate-300 uppercase">
+              DIGITAL CORE
+            </span>
+          </div>
+        </Html>
       </group>
     </Float>
   );

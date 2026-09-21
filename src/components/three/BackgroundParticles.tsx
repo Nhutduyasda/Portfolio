@@ -4,37 +4,76 @@ import React, { useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-export default function BackgroundParticles({ count = 120 }: { count?: number }) {
+interface BackgroundParticlesProps {
+  count?: number;
+}
+
+export default function BackgroundParticles({ count = 140 }: BackgroundParticlesProps) {
   const pointsRef = useRef<THREE.Points>(null);
 
-  const particles = useMemo(() => {
-    const positions = new Float32Array(count * 3);
-    const colors = new Float32Array(count * 3);
+  const { positions, colors, sizes } = useMemo(() => {
+    const pos = new Float32Array(count * 3);
+    const col = new Float32Array(count * 3);
+    const sz = new Float32Array(count);
 
-    const color1 = new THREE.Color("#7C3AED");
-    const color2 = new THREE.Color("#22D3EE");
-    const color3 = new THREE.Color("#A78BFA");
+    const cWhite = new THREE.Color("#F8FAFC");
+    const cSlate = new THREE.Color("#94A3B8");
+    const cIce = new THREE.Color("#BAE6FD");
+    const cViolet = new THREE.Color("#A78BFA");
+    const cCyan = new THREE.Color("#22D3EE");
 
     for (let i = 0; i < count; i++) {
-      // Spread across a volume
-      positions[i * 3] = (Math.random() - 0.5) * 18;
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 14;
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 12;
+      // 3 Depth tiers: 50% far (smaller, deeper), 35% mid, 15% near
+      const depthTier = Math.random();
+      let size = 0.02;
+      let spreadX = 26;
+      let spreadY = 18;
+      let spreadZ = 16;
 
-      const choice = Math.random();
-      const c = choice < 0.4 ? color1 : choice < 0.7 ? color2 : color3;
-      colors[i * 3] = c.r;
-      colors[i * 3 + 1] = c.g;
-      colors[i * 3 + 2] = c.b;
+      if (depthTier < 0.5) {
+        // Far
+        size = 0.018 + Math.random() * 0.012;
+      } else if (depthTier < 0.85) {
+        // Mid
+        size = 0.032 + Math.random() * 0.016;
+      } else {
+        // Near
+        size = 0.048 + Math.random() * 0.024;
+      }
+
+      pos[i * 3] = (Math.random() - 0.5) * spreadX;
+      pos[i * 3 + 1] = (Math.random() - 0.5) * spreadY;
+      pos[i * 3 + 2] = (Math.random() - 0.5) * spreadZ;
+
+      // Restrained celestial color palette
+      const colorChoice = Math.random();
+      let selectedColor = cSlate;
+      if (colorChoice < 0.45) {
+        selectedColor = cWhite;
+      } else if (colorChoice < 0.7) {
+        selectedColor = cSlate;
+      } else if (colorChoice < 0.82) {
+        selectedColor = cIce;
+      } else if (colorChoice < 0.92) {
+        selectedColor = cViolet; // subtle accent
+      } else {
+        selectedColor = cCyan; // subtle accent
+      }
+
+      col[i * 3] = selectedColor.r;
+      col[i * 3 + 1] = selectedColor.g;
+      col[i * 3 + 2] = selectedColor.b;
+      sz[i] = size;
     }
 
-    return { positions, colors };
+    return { positions: pos, colors: col, sizes: sz };
   }, [count]);
 
   useFrame((state, delta) => {
     if (!pointsRef.current) return;
-    pointsRef.current.rotation.y += delta * 0.03;
-    pointsRef.current.rotation.x += delta * 0.01;
+    // Ultra-calm cosmic drift
+    pointsRef.current.rotation.y += delta * 0.015;
+    pointsRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.2) * 0.03;
   });
 
   return (
@@ -42,20 +81,25 @@ export default function BackgroundParticles({ count = 120 }: { count?: number })
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
-          args={[particles.positions, 3]}
+          args={[positions, 3]}
         />
         <bufferAttribute
           attach="attributes-color"
-          args={[particles.colors, 3]}
+          args={[colors, 3]}
+        />
+        <bufferAttribute
+          attach="attributes-size"
+          args={[sizes, 1]}
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.05}
+        size={0.04}
         vertexColors
         transparent
-        opacity={0.65}
+        opacity={0.7}
         blending={THREE.AdditiveBlending}
         depthWrite={false}
+        sizeAttenuation
       />
     </points>
   );
